@@ -14,20 +14,20 @@ dfAdapt = pd.read_csv(r"Example3_RKF45.csv")
 
 # Plot Euler method solution in 3D
 figEuler = plt.figure(1)
-axEuler = figEuler.add_subplot(111, projection='3d')
-axEuler.plot(dfEuler.x, dfEuler.y, dfEuler.z)
+axEuler = plt.axes(projection='3d')
+axEuler.plot3D(dfEuler.x, dfEuler.y, dfEuler.z)
 plt.savefig("Figure_1:_Euler_solution_to_{}.svg".format(prob))
 
 # Plot Modified Euler method solution in 3D
 figModEuler = plt.figure(2)
-axModEuler = figModEuler.add_subplot(111, projection='3d')
-axModEuler.plot(dfModEuler.x, dfModEuler.y, dfModEuler.z)
+axModEuler = plt.axes(projection='3d')
+axModEuler.plot3D(dfModEuler.x, dfModEuler.y, dfModEuler.z)
 plt.savefig("Figure_2:_Modified_Euler_solution_to_{}.svg".format(prob))
 
 # Plot Runge-Kutta fourth-order method solution in 3D
 figRK4 = plt.figure(3)
-axRK4 = figRK4.add_subplot(111, projection='3d')
-axRK4.plot(dfRK4.x, dfRK4.y, dfRK4.z)
+axRK4 = plt.axes(projection='3d')
+axRK4.plot3D(dfRK4.x, dfRK4.y, dfRK4.z)
 plt.savefig("Figure_3:_RK4_solution_to_{}.svg".format(prob))
 
 # Plot x values from three different methods against each other to get
@@ -42,6 +42,7 @@ plt.savefig("Figure_4:_x_value_approximations_{}.svg".format(prob))
 
 # Plot RKF45 solution
 figRKF45 = plt.figure(5)
-axRKF45 = figRKF45.add_subplot(111, projection='3d')
-axRKF45.plot(dfAdapt.x, dfAdapt.y, dfAdapt.z)
+axRKF45 = plt.axes(projection='3d')
+axRKF45.plot3D(dfAdapt.x, dfAdapt.y, dfAdapt.z)
 plt.savefig("Figure_5:_RKF45_solution_to_{}.svg".format(prob))
+# plt.show()
