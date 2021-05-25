@@ -24,7 +24,8 @@ using namespace std;
 vector<double> linspace(double t0, double tf, int N) {
     double dt = (tf-t0)/N;
     vector<double> t(N+1);
-    std::generate(t.begin(), t.end(), [n = 0, &dt]() mutable { return n++ * dt; });
+    std::generate(t.begin(), t.end(), [n = 0, &dt]() mutable { 
+        return n++ * dt; });
 
     return t;
 }

@@ -55,8 +55,8 @@ int main() {
 
     // Initialize params
     vector<double> params {
-        10,
-        28,
+        10.0,
+        28.0,
         8.0/3.0 
     };
     vector<string> headings {

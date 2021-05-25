@@ -19,9 +19,11 @@ class solClass {
         // Simplest constructor
         solClass(vector<double>, vector<vector<double>>);
         // RKF45 constructor
-        solClass(vector<double>(*f)(double, vector<double>, vector<double>), vector<double>, double, double, vector<double>, double, int, double);
+        solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
+        vector<double>, double, double, vector<double>, double, int, double);
         // Constructor that uses other methods
-        solClass(vector<double>(*f)(double, vector<double>, vector<double>), vector<double>, vector<double>, vector<double>, string);
+        solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
+        vector<double>, vector<double>, vector<double>, string);
 
         // Write to CSV
         void writeToCSV(int, string, vector<string>);
@@ -47,6 +49,7 @@ void solClass::writeToCSV(int prec, string filename, vector<string> headings) {
     if (headings.size() != X[0].size() + 1) {
         cout << "There should be a heading for t and each variable in the";
         cout << " separate columns of X" << endl;
+        throw;
     }
     int N = t.size();
 
@@ -97,7 +100,8 @@ solClass::solClass(vector<double> tInput, vector<vector<double>> XInput) {
  * @param params   Vector of type double consisting of parameter values.
  * @return         2d array of X values; rows correspond to different t values.
  */
-vector<vector<double>> Euler(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
+vector<vector<double>> Euler(vector<double>(*f)(double, vector<double>, 
+vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
     // Initializing variables
     double dt;
     int N = t.size()-1;
@@ -130,7 +134,8 @@ vector<vector<double>> Euler(vector<double>(*f)(double, vector<double>, vector<d
  * @param params   Vector of type double consisting of parameter values.
  * @return         2d array of X values; rows correspond to different t values.
  */
-vector<vector<double>> ModEuler(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
+vector<vector<double>> ModEuler(vector<double>(*f)(double, vector<double>, 
+vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
     // Initializing variables
     double dt;
     int N = t.size()-1;
@@ -168,7 +173,8 @@ vector<vector<double>> ModEuler(vector<double>(*f)(double, vector<double>, vecto
  * @param params   Vector of type double consisting of parameter values.
  * @return         2d array of X values; rows correspond to different t values.
  */
-vector<vector<double>> RK4(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
+vector<vector<double>> RK4(vector<double>(*f)(double, vector<double>, 
+vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
     // Initializing variables
     double dt;
     int N = t.size()-1;
@@ -216,7 +222,9 @@ vector<vector<double>> RK4(vector<double>(*f)(double, vector<double>, vector<dou
  * @param dtInit   Initial guess for dt. 
  * @return         Object of type solClass containing computed t and X values.
  */
-solClass RKF45(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, double t0, double tf, vector<double> params, double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
+solClass RKF45(vector<double>(*f)(double, vector<double>, vector<double>), 
+vector<double> X0, double t0, double tf, vector<double> params, 
+double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
     // Initialize required vectors
     vector<double> t;
     vector<vector<double>> X;
@@ -274,9 +282,10 @@ solClass RKF45(vector<double>(*f)(double, vector<double>, vector<double>), vecto
         X1 = vecAdd(vecAdd(vecAdd(vecAdd(X[i], scalMult(25.0/216.0, k1)), 
         scalMult(1408.0/2565.0, k3)), scalMult(2197.0/4104.0, k4)), 
         scalMult(-1.0/5.0, k5));
-        X2 = vecAdd(vecAdd(vecAdd(vecAdd(vecAdd(X[i], scalMult(16.0/135.0, k1)), 
-        scalMult(6656.0/12825.0, k3)), scalMult(28561.0/56430.0, k4)), 
-        scalMult(-9.0/50.0, k5)), scalMult(2.0/55.0, k6));
+        X2 = vecAdd(vecAdd(vecAdd(vecAdd(vecAdd(X[i], 
+        scalMult(16.0/135.0, k1)), scalMult(6656.0/12825.0, k3)), 
+        scalMult(28561.0/56430.0, k4)), scalMult(-9.0/50.0, k5)), 
+        scalMult(2.0/55.0, k6));
 
         // Measure of error in X1
         RX = scalMult(pow(dt, -1), vecAbs(vecAdd(X1, scalMult(-1.0, X2))));
@@ -320,7 +329,9 @@ solClass RKF45(vector<double>(*f)(double, vector<double>, vector<double>), vecto
  * @param method   Non-adaptive method to be used to integrate ODE. Accepted
  * @return         2d array of X values; rows correspond to different t values.
  */
-solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, vector<double> tInput, vector<double> params, string method="RK4") {
+solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
+vector<double> X0, vector<double> tInput, vector<double> params, 
+string method="RK4") {
     t = tInput;
     if (method == "RK4") {
         X = RK4(f, X0, tInput, params);
@@ -350,7 +361,9 @@ solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), v
  * @param dtInit   Initial guess for dt. 
  * @return         Object of type solClass containing computed t and X values.
  */
-solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, double t0, double tf, vector<double> params, double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
+solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
+vector<double> X0, double t0, double tf, vector<double> params, 
+double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
     *this = RKF45(f, X0, t0, tf, params, tol, itMax, dtInit);
 }
 
@@ -373,7 +386,9 @@ solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), v
  * @param pyScript Python script file name (including file extension).
  * @return         Nothing.
  */
-void solveProblem(vector<double> (*f)(double, vector<double>, vector<double>), vector<double> X0, double t0, double tf, double tol, int N, int prec, vector<double> params, string prob, vector<string> headings, string pyScript) {
+void solveProblem(vector<double> (*f)(double, vector<double>, vector<double>), 
+vector<double> X0, double t0, double tf, double tol, int N, int prec, 
+vector<double> params, string prob, vector<string> headings, string pyScript) {
     // This makes t equivalent to np.linspace(t0, tf, num=N+1)
     vector<double> t = linspace(t0, tf, N);
 
