@@ -27,9 +27,9 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
 }
 
 /**
- * Main function, takes N (number of steps) and tf as user inputs and applies
- * Euler's, Modified Euler's and the Runge-Kutta fourth order method to solving
- * the ODE: dX/dt = ODE(t, f, params)
+ * Main function, takes N (number of steps), tol and tf as user inputs and 
+ * applies Euler's, Modified Euler's and the Runge-Kutta fourth order method to
+ * solving the ODE: dX/dt = ODE(t, f, params)
  * with the initial condition X(t[0]) = X0, then writes the solution to a CSV
  * file and uses a Python script to plot the results.
  */
@@ -37,10 +37,9 @@ int main() {
     // Initialize variables
     int prec = 15;
     double t0 = 0.0; // Pretty normal to assume we start at t=0
-    // Take input of N and tf
+    // Take input of N, tf and tol
     int N = getN();
     double tf = getTf();
-    // Compute step size
     double tol = getTol();
 
     // Initialize relevant vectors

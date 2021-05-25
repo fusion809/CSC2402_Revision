@@ -141,9 +141,7 @@ vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
     int N = t.size()-1;
     int sysSize = X0.size();
     vector<vector<double>> X;
-    vector<double> nextX(sysSize);
-    vector<double> k1(sysSize);
-    vector<double> k2(sysSize);
+    vector<double> nextX(sysSize), k1(sysSize), k2(sysSize);
 
     // First entry should be X0
     X.push_back(X0);
@@ -180,10 +178,7 @@ vector<double>), vector<double> X0, vector<double> t, vector<double> params) {
     int N = t.size()-1;
     int sysSize = X0.size();
     vector<vector<double>> X;
-    vector<double> nextX(sysSize);
-    vector<double> k1(sysSize);
-    vector<double> k2(sysSize);
-    vector<double> k3(sysSize);
+    vector<double> nextX(sysSize), k1(sysSize), k2(sysSize), k3(sysSize);
     vector<double> k4(sysSize);
 
     // First entry should be X0
@@ -228,20 +223,7 @@ double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
     // Initialize required vectors
     vector<double> t;
     vector<vector<double>> X;
-    vector<double> k1;
-    vector<double> k2X;
-    vector<double> k2;
-    vector<double> k3X;
-    vector<double> k3;
-    vector<double> k4X;
-    vector<double> k4;
-    vector<double> k5X;
-    vector<double> k5;
-    vector<double> k6X;
-    vector<double> k6;
-    vector<double> X1;
-    vector<double> X2;
-    vector<double> RX;
+    vector<double> k1, k2X, k2, k3X, k3, k4X, k4, k5X, k5, k6X, k6, X1, X2, RX;
 
     // Add first entries to t and X
     t.push_back(t0);
@@ -327,7 +309,7 @@ double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
  * the solution at.
  * @param params   Vector of type double consisting of parameter values.
  * @param method   Non-adaptive method to be used to integrate ODE. Accepted
- * @return         2d array of X values; rows correspond to different t values.
+ * @return         N/A.
  */
 solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
 vector<double> X0, vector<double> tInput, vector<double> params, 
@@ -340,8 +322,8 @@ string method="RK4") {
     } else if (method == "ModEuler") {
         X = ModEuler(f, X0, tInput, params);
     } else {
-        cout << "No method called " << method;
-        cout << " is callable by this constructor" << endl;
+        cout << "No method called " << method << " is callable by this";
+        cout << " constructor." << endl;
     }
 }
 
@@ -359,7 +341,7 @@ string method="RK4") {
  * @param itMax    An integer representing the maximum number of iterations 
  * allowable.
  * @param dtInit   Initial guess for dt. 
- * @return         Object of type solClass containing computed t and X values.
+ * @return         N/A.
  */
 solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
 vector<double> X0, double t0, double tf, vector<double> params, 
@@ -404,10 +386,12 @@ vector<double> params, string prob, vector<string> headings, string pyScript) {
     RK4Sol.writeToCSV(prec, "Example3_RK4.csv", headings);
     solution.writeToCSV(prec, "Example3_RKF45.csv", headings);
     
+    // Write prob to file so Python script can use it
     ofstream file;
     file.open("Example3_prob.txt");
     file << prob;
     file.close();
+
     // Use Python to generate relevant plots and save as svgs
     stringstream cmd;
     cmd << "python ";
