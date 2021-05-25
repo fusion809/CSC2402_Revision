@@ -1,16 +1,5 @@
-// Required for using vectors
-#include <vector>
-// Required for assert() calls later
-#include <cassert>
-// Required for cout and cin calls later
-#include <iostream>
-#include <iomanip>
-// Used later in calls to abs
-#include <cmath>
 // Used to write to file
 #include <fstream>
-// Required std::generate call later
-#include <bits/stdc++.h>
 // Required for system call later
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,103 +8,8 @@
 // Load required namespace
 using namespace std;
 
-/**
- * Adds the two specified 1d vectors.
- * 
- * @param X        An array of type double.
- * @param Y        An array of type double.
- * @return         Result of X + Y.
- */
-vector<double> vecAdd(vector<double> X, vector<double> Y) {
-    // Initialize variable
-    int N = X.size();
-    vector<double> returnArr(N);
-
-    // Check if X and Y match in size; if they don't throw an error
-    assert(X.size() == Y.size());
-
-    // For loop was originally used but returned a bizarre error
-    for (int i = 0 ; i < N; i++) {
-        returnArr[i] = X[i]+Y[i];
-    }
-
-    return returnArr;
-}
-
-/**
- * Multiplies the two specified vectors.
- * 
- * @param X        An array of type double.
- * @param Y        An array of type double.
- * @return         X * Y element-wise.
- */
-vector<double> vecMult(vector<double> X, vector<double> Y) {
-    // Initialize variables
-    int N = X.size();
-    vector<double> returnArr(N);
-
-    // Check if X and Y match in size; if they don't throw an error
-    assert(X.size() == Y.size());
-
-    for (int i = 0; i < N; i++) {
-        returnArr[i] = X[i]*Y[i];
-    }
-
-    return returnArr;
-}
-
-/**
- * Multiples specified vector by the specified scalar.
- * 
- * @param scalar   Scalar of type double.
- * @param X        Vector of type double.
- * @return         scalar * X.
- */
-vector<double> scalMult(double scalar, vector<double> X) {
-    // Initialize variables
-    int N = X.size();
-    vector<double> returnArr(N);
-
-    // Loop over elements of X multiply them by a scalar and assign it to 
-    // returnArr
-    for (int i = 0; i < N; i++) {
-        returnArr[i] = scalar*X[i];
-    }
-
-    return returnArr;
-}
-
-/**
- * Compute absolute value of each entry in input vector.
- * 
- * @param x        Input vector.
- * @return         Absolute value of x.
- */
-vector<double> vecAbs(vector<double> x) {
-    // Initialize variables
-    int N = x.size();
-    vector<double> absx(N);
-
-    // Loop over elements of x[i] and take absolute value
-    for (int i = 0; i < N; i++) {
-        absx[i] = abs(x[i]);
-    }
-
-    return absx;
-}
-
-/**
- * Print each entry of vec with "name[index] is:" before it
- * 
- * @param vec      Vector whose elements are of type double.
- * @param name     Name of vector whose elements are to be printed.
- * @return         Nothing.
- */
-void printVec(vector<double> vec, string name) {
-    for (int i = 0 ; i < vec.size(); i++) {
-        cout << name << "[" << i << "] is: " << vec[i] << endl;
-    }
-}
+#include <vecOps.h>
+#include <input.h>
 
 /**
  * Solution object class.
@@ -458,67 +352,6 @@ solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), v
  */
 solClass::solClass(vector<double>(*f)(double, vector<double>, vector<double>), vector<double> X0, double t0, double tf, vector<double> params, double tol=1e-9, int itMax=1000000, double dtInit=1e-1) {
     *this = RKF45(f, X0, t0, tf, params, tol, itMax, dtInit);
-}
-
-/**
- * Generates a vector of N+1 linearly spaced points between and including
- * t0 and tf. 
- * 
- * @param t0       Initial t value.
- * @param tf       Final t value.
- * @param N        N+1 t values are stored in the return vector.
- * @return         t vector.
- */
-vector<double> linspace(double t0, double tf, int N) {
-    double dt = (tf-t0)/N;
-    vector<double> t(N+1);
-    std::generate(t.begin(), t.end(), [n = 0, &dt]() mutable { return n++ * dt; });
-
-    return t;
-}
-
-/**
- * Get the number of steps to be used (N) from the user.
- * 
- * @params         None.
- * @return         N.
- */
-int getN() {
-    double doubleN;
-    cout << "Please enter N:" << endl;
-    // Following two lines allows users to enter N in scientific notation
-    cin >> doubleN;
-    int N = int (doubleN);
-
-    return N;
-}
-
-/**
- * Get the final t value (tf) from the user.
- * 
- * @params         None.
- * @return         tf.
- */
-double getTf() {
-    double tf;
-    cout << "Please enter tf:" << endl;
-    cin >> tf;
-    
-    return tf;
-}
-
-/**
- * Get the error tolerance (tol) from the user.
- * 
- * @params         None.
- * @return         tol.
- */
-double getTol() {
-    double tol;
-    cout << "Please enter tol for RKF45:" << endl;
-    cin >> tol;
-
-    return tol;
 }
 
 /**
