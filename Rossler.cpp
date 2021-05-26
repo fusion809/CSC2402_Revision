@@ -21,10 +21,11 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
     double c = params[2];
 
     // dX/dt
-    vector<double> dX(3);
-    dX[0] = -y - z; // dx/dt
-    dX[1] = x + a*y; // dy/dt
-    dX[2] = b + z*(x-c);  // dz/dt
+    vector<double> dX {
+        - y - z,        // dx/dt
+        x + a * y,      // dy/dt
+        b + z * (x-c)   // dz/dt
+    };
 
     return dX;
 }

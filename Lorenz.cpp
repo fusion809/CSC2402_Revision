@@ -21,10 +21,11 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
     double beta = params[2];
 
     // dX/dt
-    vector<double> dX(3);
-    dX[0] = sigma*(y-x); // dx/dt
-    dX[1] = x*(rho-z)-y; // dy/dt
-    dX[2] = x*y-beta*z;  // dz/dt
+    vector<double> dX {
+        sigma*(y-x), // dx/dt
+        x*(rho-z)-y, // dy/dt
+        x*y-beta*z   // dz/dt
+    };
 
     return dX;
 }

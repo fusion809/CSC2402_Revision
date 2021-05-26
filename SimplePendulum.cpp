@@ -19,9 +19,10 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
     double l = params[1];
 
     // dX/dt
-    vector<double> dX(2);
-    dX[0] = dtheta;
-    dX[1] = -g/l * cos(theta);
+    vector<double> dX {
+        dtheta,             // dtheta/dt
+        - g/l * cos(theta)  // d^2 theta/dt^2
+    };
 
     return dX;
 }
