@@ -3,14 +3,14 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-with open('Example3_prob.txt', 'r') as file:
+with open('ODE_prob.txt', 'r') as file:
     prob = file.read().replace('\n', '')
 
 # Import data from CSV file
-dfEuler = pd.read_csv(r"Example3_Euler.csv")
-dfModEuler = pd.read_csv(r"Example3_ModEuler.csv")
-dfRK4 = pd.read_csv(r"Example3_RK4.csv")
-dfAdapt = pd.read_csv(r"Example3_RKF45.csv")
+dfEuler = pd.read_csv(r"ODE_Euler.csv")
+dfModEuler = pd.read_csv(r"ODE_ModEuler.csv")
+dfRK4 = pd.read_csv(r"ODE_RK4.csv")
+dfAdapt = pd.read_csv(r"ODE_RKF45.csv")
 
 # Plot Euler method solution in 3D
 figEuler = plt.figure(1)

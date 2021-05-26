@@ -2,7 +2,7 @@
 #include <ODE.h>
 
 /**
- * Returns the right-hand side of our ODE (currently the Lorenz system).
+ * Returns the right-hand side of our ODE (currently the simple pendulum).
  * 
  * @param t        A double pertaining to the value of time in our system.
  * @param X        An array of values of the dependent variables for our ODE.
@@ -11,20 +11,17 @@
  */
 vector<double> ODE(double t, vector<double> X, vector<double> params) {
     // Dependent variables
-    double x = X[0];
-    double y = X[1];
-    double z = X[2];
+    double theta = X[0];
+    double dtheta = X[1];
 
     // Parameters
-    double a = params[0];
-    double b = params[1];
-    double c = params[2];
+    double g = params[0];
+    double l = params[1];
 
     // dX/dt
-    vector<double> dX(3);
-    dX[0] = a*(y-x); // dx/dt
-    dX[1] = x*(c-a-z)+c*y; // dy/dt
-    dX[2] = x*y-b*z;  // dz/dt
+    vector<double> dX(2);
+    dX[0] = dtheta;
+    dX[1] = -g/l * cos(theta);
 
     return dX;
 }
@@ -47,25 +44,21 @@ int main() {
 
     // Initialize relevant vectors
     vector<double> X0 {
-        -0.1,
-        0.5,
-        -0.6
+        0.0,
+        0.0
+    };
+    vector<double> params {
+        9.8,
+        1.0
     };
 
-    // Initialize params
-    vector<double> params {
-        40.0,
-        3.0,
-        28.0 
-    };
+    // Write solution data to CSV file (easiest to import into Python)
     vector<string> headings {
         "t",
-        "x",
-        "y",
-        "z"
+        "theta",
+        "thetaDot"
     };
 
     // Solve the problem using four different methods and plot the result
-    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Chen", headings, 
-    "plotEx3.py");
+    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Simple pendulum", headings, "SimplePendulum.py");
 }

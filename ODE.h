@@ -381,14 +381,14 @@ vector<double> params, string prob, vector<string> headings, string pyScript) {
     solClass solution(f, X0, t0, tf, params, tol);
 
     // Write solution data to CSV file (easiest to import into Python)
-    EulerSol.writeToCSV(prec, "Example3_Euler.csv", headings);
-    ModEulerSol.writeToCSV(prec, "Example3_ModEuler.csv", headings);
-    RK4Sol.writeToCSV(prec, "Example3_RK4.csv", headings);
-    solution.writeToCSV(prec, "Example3_RKF45.csv", headings);
+    EulerSol.writeToCSV(prec, "ODE_Euler.csv", headings);
+    ModEulerSol.writeToCSV(prec, "ODE_ModEuler.csv", headings);
+    RK4Sol.writeToCSV(prec, "ODE_RK4.csv", headings);
+    solution.writeToCSV(prec, "ODE_RKF45.csv", headings);
     
     // Write prob to file so Python script can use it
     ofstream file;
-    file.open("Example3_prob.txt");
+    file.open("ODE_prob.txt");
     file << prob;
     file.close();
 

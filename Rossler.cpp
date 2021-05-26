@@ -2,7 +2,7 @@
 #include <ODE.h>
 
 /**
- * Returns the right-hand side of our ODE (currently the Lorenz system).
+ * Returns the right-hand side of our ODE (currently the Rossler system).
  * 
  * @param t        A double pertaining to the value of time in our system.
  * @param X        An array of values of the dependent variables for our ODE.
@@ -16,15 +16,15 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
     double z = X[2];
 
     // Parameters
-    double sigma = params[0];
-    double rho = params[1];
-    double beta = params[2];
+    double a = params[0];
+    double b = params[1];
+    double c = params[2];
 
     // dX/dt
     vector<double> dX(3);
-    dX[0] = sigma*(y-x); // dx/dt
-    dX[1] = x*(rho-z)-y; // dy/dt
-    dX[2] = x*y-beta*z;  // dz/dt
+    dX[0] = -y - z; // dx/dt
+    dX[1] = x + a*y; // dy/dt
+    dX[2] = b + z*(x-c);  // dz/dt
 
     return dX;
 }
@@ -47,16 +47,16 @@ int main() {
 
     // Initialize relevant vectors
     vector<double> X0 {
-        1.0,
-        1.0,
-        1.0
+        -0.1,
+        0.5,
+        -0.6
     };
 
     // Initialize params
     vector<double> params {
-        10.0,
-        28.0,
-        8.0/3.0 
+        0.1,
+        0.1,
+        14  
     };
     vector<string> headings {
         "t",
@@ -66,6 +66,6 @@ int main() {
     };
 
     // Solve the problem using four different methods and plot the result
-    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Lorenz", headings, 
-    "plotEx3.py");
+    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Rossler", headings, 
+    "3DPlots.py");
 }

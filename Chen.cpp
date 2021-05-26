@@ -2,7 +2,7 @@
 #include <ODE.h>
 
 /**
- * Returns the right-hand side of our ODE (currently the Rossler system).
+ * Returns the right-hand side of our ODE (currently the Chen system).
  * 
  * @param t        A double pertaining to the value of time in our system.
  * @param X        An array of values of the dependent variables for our ODE.
@@ -22,9 +22,9 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
 
     // dX/dt
     vector<double> dX(3);
-    dX[0] = -y - z; // dx/dt
-    dX[1] = x + a*y; // dy/dt
-    dX[2] = b + z*(x-c);  // dz/dt
+    dX[0] = a*(y-x); // dx/dt
+    dX[1] = x*(c-a-z)+c*y; // dy/dt
+    dX[2] = x*y-b*z;  // dz/dt
 
     return dX;
 }
@@ -54,9 +54,9 @@ int main() {
 
     // Initialize params
     vector<double> params {
-        0.1,
-        0.1,
-        14  
+        40.0,
+        3.0,
+        28.0 
     };
     vector<string> headings {
         "t",
@@ -66,6 +66,6 @@ int main() {
     };
 
     // Solve the problem using four different methods and plot the result
-    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Rossler", headings, 
-    "plotEx3.py");
+    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Chen", headings, 
+    "3DPlots.py");
 }
