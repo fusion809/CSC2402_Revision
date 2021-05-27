@@ -32,14 +32,14 @@ def main():
     axEuler = plt.axes(projection='3d')
     axEuler.plot3D(xEul, yEul, zEul)
     plt.title("Euler solution to {} (N={})".format(prob, N))
-    plt.savefig("{}/Figure_1:_Euler_solution_to_{}.svg".format(prob, prob))
+    plt.savefig("{}/Figure_1:_Euler_solution_to_{}.png".format(prob, prob))
 
     # Plot Modified Euler method solution in 3D
     plt.figure(2)
     axModEuler = plt.axes(projection='3d')
     axModEuler.plot3D(xMEul, yMEul, zMEul)
     plt.title("Modified Euler solution to {} (N={})".format(prob, N))
-    plt.savefig("{}/Figure_2:_Modified_Euler_solution_to_{}.svg".format(prob,
+    plt.savefig("{}/Figure_2:_Modified_Euler_solution_to_{}.png".format(prob,
     prob))
 
     # Plot Runge-Kutta fourth-order method solution in 3D
@@ -47,27 +47,26 @@ def main():
     axRK4 = plt.axes(projection='3d')
     axRK4.plot3D(xRK4, yRK4, zRK4)
     plt.title("RK4 solution to {} (N={})".format(prob, N))
-    plt.savefig("{}/Figure_3:_RK4_solution_to_{}.svg".format(prob, prob))
+    plt.savefig("{}/Figure_3:_RK4_solution_to_{}.png".format(prob, prob))
+
+    # Plot RKF45 solution
+    plt.figure(4)
+    axRKF45 = plt.axes(projection='3d')
+    axRKF45.plot3D(dfRKF45.x, dfRKF45.y, dfRKF45.z)
+    plt.title("RKF45 solution to {} (tol={})".format(prob, tol))
+    plt.savefig("{}/Figure_4:_RKF45_solution_to_{}.png".format(prob, prob))
 
     # Plot x values from three different methods against each other to get
     # some feeling for errors in the various methods
-    plt.figure(4)
+    plt.figure(5)
     plt.plot(t, xEul, label='x (Euler)')
     plt.plot(t, xMEul, label='x (Modified Euler)')
     plt.plot(t, xRK4, label='x (RK4)')
     plt.plot(t, dfRKF45.x, label="x (RKF45)")
     plt.legend()
     plt.title("Comparison of x solutions to {} from four different numerical schemes \n(N={}, tol={})".format(prob, N, tol))
-    plt.savefig("{}/Figure_4:_x_value_approximations_{}.svg".format(prob, 
+    plt.savefig("{}/Figure_5:_x_value_approximations_{}.png".format(prob, 
     prob))
-
-    # Plot RKF45 solution
-    plt.figure(5)
-    axRKF45 = plt.axes(projection='3d')
-    axRKF45.plot3D(dfRKF45.x, dfRKF45.y, dfRKF45.z)
-    plt.title("RKF45 solution to {} (tol={})".format(prob, tol))
-    plt.savefig("{}/Figure_5:_RKF45_solution_to_{}.svg".format(prob, prob))
-    # plt.show()
 
 if __name__ == "__main__":
     main()

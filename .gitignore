@@ -1,5 +1,6 @@
 *.csv
 *.svg
+*.png
 *.out
 *.vsix
 *.txt
