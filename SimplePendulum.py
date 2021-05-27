@@ -6,6 +6,26 @@ import matplotlib.pyplot as plt
 # Get t from dfRKF45 and interpolate all other theta and theta dot to these 
 # points
 def interp(dfEul, dfMEul, dfRK4, dfRKF45):
+    """
+    Interpolates theta and theta dot values for the three other methods to 
+    Runge-Kutta-Fehlberg's t grid.
+
+    Parameters
+    ----------
+    dfEul : Data Frame
+            Contains the results from Euler's method.
+    dfMEul : Data Frame
+            Contains the results from the Modified Euler's method.
+    dfRK4 : Data Frame
+            Contains the results from Runge-Kutta's fourth-order method.
+    dfRKF45 : Data Frame
+            Contains the results from the Runge-Kutta-Fehlberg 4(5)th order (RKF45) 
+            method.
+
+    Returns
+    -------
+    NumPy arrays containing: t values, theta (Euler) values, theta (Modified Euler) values, theta dot (Modified Euler) values, theta (RK4) values and theta dot (RK4) values at RKF45's grid.
+    """
     t = dfRKF45.t
     thetaEul = ptls.spline(dfEul.t, dfEul.theta, t)
     dthetaEul = ptls.spline(dfEul.t, dfEul.thetaDot, t)
