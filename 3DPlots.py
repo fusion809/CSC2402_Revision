@@ -28,14 +28,14 @@ def main():
     t, xEul, yEul, zEul, xMEul, yMEul, zMEul, xRK4, yRK4, zRK4 = interp(dfEul, dfMEul, dfRK4, dfRKF45)
 
     # Plot Euler method solution in 3D
-    figEuler = plt.figure(1)
+    plt.figure(1)
     axEuler = plt.axes(projection='3d')
     axEuler.plot3D(xEul, yEul, zEul)
     plt.title("Euler solution to {} (N={})".format(prob, N))
     plt.savefig("{}/Figure_1:_Euler_solution_to_{}.svg".format(prob, prob))
 
     # Plot Modified Euler method solution in 3D
-    figModEuler = plt.figure(2)
+    plt.figure(2)
     axModEuler = plt.axes(projection='3d')
     axModEuler.plot3D(xMEul, yMEul, zMEul)
     plt.title("Modified Euler solution to {} (N={})".format(prob, N))
@@ -43,7 +43,7 @@ def main():
     prob))
 
     # Plot Runge-Kutta fourth-order method solution in 3D
-    figRK4 = plt.figure(3)
+    plt.figure(3)
     axRK4 = plt.axes(projection='3d')
     axRK4.plot3D(xRK4, yRK4, zRK4)
     plt.title("RK4 solution to {} (N={})".format(prob, N))
@@ -62,7 +62,7 @@ def main():
     prob))
 
     # Plot RKF45 solution
-    figRKF45 = plt.figure(5)
+    plt.figure(5)
     axRKF45 = plt.axes(projection='3d')
     axRKF45.plot3D(dfRKF45.x, dfRKF45.y, dfRKF45.z)
     plt.title("RKF45 solution to {} (tol={})".format(prob, tol))
