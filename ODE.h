@@ -4,12 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sstream>
+#include <vecOps.h>
+#include <input.h>
 
 // Load required namespace
 using namespace std;
-
-#include <vecOps.h>
-#include <input.h>
 
 /**
  * Solution object class.
@@ -397,4 +396,17 @@ vector<double> params, string prob, vector<string> headings, string pyScript) {
     cmd << "python ";
     cmd << pyScript;
     system(cmd.str().c_str());
+}
+
+/**
+ * Writes tolerances to file so that it can be read by Python script.
+ * 
+ * @param tol      Error tolerance to be written to ODE_tolerance.txt
+ */
+void writeTol(double tol) {
+    // Write to tolerance file
+    ofstream file;
+    file.open("ODE_tolerance.txt");
+    file << tol << endl;
+    file.close();
 }

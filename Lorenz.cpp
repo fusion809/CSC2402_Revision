@@ -66,6 +66,9 @@ int main() {
         "z"
     };
 
+    // Write tolerance to file
+    writeTol(tol);
+
     // Solve the problem using four different methods and plot the result
     solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Lorenz", headings, 
     "3DPlots.py");

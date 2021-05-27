@@ -60,6 +60,9 @@ int main() {
         "thetaDot"
     };
 
+    // Write to tolerance file
+    writeTol(tol);
+
     // Solve the problem using four different methods and plot the result
     solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "Simple pendulum", headings, "SimplePendulum.py");
 }
