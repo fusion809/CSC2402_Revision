@@ -62,9 +62,7 @@ int main() {
     file << "int main() {" << endl;
     file << "    // Initialize variables" << endl;
     cout << "Please input the level of precision you want the solution to be written to text files at" << endl;
-    int prec;
-    cin >> prec;
-    file << "    int prec = " << prec << ";" << endl;
+    file << "    int prec = 15;" << endl;
     double t0;
     cout << "Please enter the starting time (t0)" << endl;
     cin >> t0;

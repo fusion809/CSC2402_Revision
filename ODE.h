@@ -23,7 +23,6 @@ class solClass {
         // Constructor that uses other methods
         solClass(vector<double>(*f)(double, vector<double>, vector<double>), 
         vector<double>, vector<double>, vector<double>, string);
-
         // Write to CSV
         void writeToCSV(int, string, vector<string>);
  
