@@ -2,7 +2,7 @@
 #include <ODE.h>
 
 /**
- * Returns the right-hand side of our ODE (currently the Van der Pol oscillator system)
+ * Returns the right-hand side of our ODE (currently the orbit of the Moon)
  *
  * @param t        A double pertaining to the value of time in our system.
  * @param X        An array of values of the dependent variables for our ODE.
