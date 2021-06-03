@@ -103,5 +103,8 @@ def main():
     plt.title("Phase plots of dr/dt against r for various numerical schemes \n(N={}, tol={})".format(prob, N, tol))
     plt.savefig("{}/Figure_5:_dr_value_approximations_{}.png".format(prob, prob))
 
+    print("Minimum of r is: {}".format(np.min(dfRKF45.r)))
+    print("Maximum of r is: {}".format(np.max(dfRKF45.r)))
+
 if __name__ == "__main__":
     main()
