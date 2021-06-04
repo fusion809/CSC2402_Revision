@@ -24,9 +24,9 @@ vector<double> ODE(double t, vector<double> X, vector<double> params) {
     // the Lagrangian:
     // m/2 * (rdot^2 + r^2 theta dot^2) + GMm/r.
     vector<double> dX {
-    	dr,
-    	pow(c,2)/pow(r,3)-G*M/pow(r,2),
-        c/pow(r,2)
+    	dr,                               // dr/dt
+    	pow(c,2)/pow(r,3)-G*M/pow(r,2),   // d^2r/dt^2
+        c/pow(r,2)                        // dtheta/dt
     };
 
     return dX;
@@ -44,7 +44,7 @@ int main() {
     int prec = 15;
     double t0 = 0;
     int N = int (1e4);
-    double tf = 10e6;
+    double tf = 1e7;
     double tol = 1e-9;
     // int N = getN();
     // double tf = getTf();
@@ -52,13 +52,13 @@ int main() {
     // Initialize relevant vectors
     vector<double> X0 {
         385e6,
-        56.5,
+        56.6,
         0
     };
     // Initialize params
     vector<double> params {
         5.97237e24,
-        3.90045e11
+        3.900453e11
     };
     vector<string> headings {
         "t",
