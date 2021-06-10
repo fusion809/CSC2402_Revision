@@ -6,7 +6,8 @@ I use an executable shell script called compile located at /usr/local/bin on my 
 ```bash
 #!/usr/bin/env bash
 g++ -g -std=c++11 -I . $1 -o ${1/.cpp/.out} && \
-        chmod +x ${1/.cpp/.out}; ./${1/.cpp/.out}
+        chmod +x ${1/.cpp/.out} && \
+        ./${1/.cpp/.out}
 ```
 
 and is called using:
