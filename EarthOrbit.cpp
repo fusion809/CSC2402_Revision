@@ -2,7 +2,7 @@
 #include <ODE.h>
 
 /**
- * Returns the right-hand side of our ODE (currently the orbit of the Moon)
+ * Returns the right-hand side of our ODE (currently the orbit of the Earth)
  *
  * @param t        A double pertaining to the value of time in our system.
  * @param X        An array of values of the dependent variables for our ODE.
@@ -45,21 +45,21 @@ int main() {
     int prec = 15;
     double t0 = 0;
     int N = int (1e4);
-    double tf = 1e7;
-    double tol = 1e-9;
+    double tf = 6.32e7;
+    double tol = 1e-8;
     // int N = getN();
     // double tf = getTf();
     // double tol = getTol();
     // Initialize relevant vectors
     vector<double> X0 {
-        385e6,
-        56.6,
+        149.6e9,
+        350,
         0
     };
     // Initialize params
     vector<double> params {
-        5.97237e24,
-        3.900453e11
+        1.9885e30,
+        4.4405e15
     };
     vector<string> headings {
         "t",
@@ -72,5 +72,5 @@ int main() {
     writeTol(tol);
  
     // Solve the problem using four different methods and plot the result    
-    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "MoonOrbit", headings, "2DPlotsMoonOrbit.py");
+    solveProblem(ODE, X0, t0, tf, tol, N, prec, params, "EarthOrbit", headings, "2DPlotsEarthOrbit.py");
 }

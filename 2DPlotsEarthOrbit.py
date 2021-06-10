@@ -86,7 +86,7 @@ def main():
     plt.legend()
     plt.xlabel("$x$ (metres)")
     plt.ylabel("$y$ (metres)")
-    plt.title("2D trajectory of the moon")
+    plt.title("2D trajectory of the Earth")
     plt.savefig("{}/Figure_1:_y_value_approximations_against_x_{}.png".format(prob, prob))
 
     # Plot r values from four different methods against each other to get

@@ -4,6 +4,35 @@ import plotTools as ptls
 import matplotlib.pyplot as plt
 
 def interp(dfEul, dfMEul, dfRK4, dfRKF45):
+    """
+    Interpolate Euler, Modified Euler and RK4 solutions to RKF45 grid.
+
+    Parameters
+    ----------
+    dfEul : Data Frame.
+            Contains the Euler solution, including time values.
+    dfMEul : Data Frame.
+            Contains the Modified Euler solution, including time values.
+    dfRK4 : Data Frame.
+            Contains the Runge-Kutta 4th order solution, including time values.
+
+    Returns
+    -------
+    t : NumPy array.
+        Contains RKF45 time values.
+    uEul : NumPy array.
+        u values of the Euler solution.
+    duEul : NumPy array.
+        du/dx values of the Euler solution.
+    uMEul : NumPy array.
+        u values of the Modified Euler solution.
+    duMEul : NumPy array.
+        du/dx values of the Modified Euler solution.
+    uRK4 : NumPy array.
+        u values of the RK4 solution.
+    duRK4 : NumPy array.
+        du/dx values of the RK4 solution.
+    """
     t = dfRKF45.t
     uEul = ptls.spline(dfEul.t, dfEul.u, t)
     duEul = ptls.spline(dfEul.t, dfEul.du, t)
