@@ -44,7 +44,7 @@ int main() {
     // Initialize variables
     int prec = 15;
     double t0 = 0;
-    int N = int (1e4);
+    int N = int (1e3);
     double tf = 6.32e7;
     double tol = 1e-8;
     // int N = getN();
@@ -53,13 +53,13 @@ int main() {
     // Initialize relevant vectors
     vector<double> X0 {
         149.6e9,
-        350,
+        310,
         0
     };
     // Initialize params
     vector<double> params {
         1.9885e30,
-        4.4405e15
+        4.4407e15
     };
     vector<string> headings {
         "t",
