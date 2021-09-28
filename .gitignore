@@ -1,6 +1,7 @@
 *.csv
 *.svg
 *.png
+*.cpp_out
 *.out
 *.vsix
 *.txt
@@ -8,3 +9,4 @@
 structConst*.cpp
 .vscode
 __pycache__
+latest.cpp

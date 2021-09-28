@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Written in May 2021 by Brenton Horne
 import matplotlib.pyplot as plt
 import pandas as pd
